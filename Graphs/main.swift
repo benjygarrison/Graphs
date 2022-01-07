@@ -173,13 +173,13 @@ class Graph {
         
         // mark first vertex as visit and enqueue
         visited[s] = true
-        print("Starting at \(s)")
+//        print("Starting at \(s)")
         queue.add(s)
         result.append(s)
         
         while queue.count > 0 {
             let current = queue.remove()!
-            print("De-Queueing \(current)")
+//            print("De-Queueing \(current)")
             
             // get all adjacent vertices of the current vertex
             //if adjacent has not been visited, mark visited and enqueue
@@ -187,7 +187,7 @@ class Graph {
             for n in adj[current] {
                 if visited[n] == false {
                     visited[n] = true
-                    print("Queuing at \(n)")
+ //                   print("Queuing at \(n)")
                     queue.add(n)
                     result.append(n)
                 }
@@ -195,6 +195,39 @@ class Graph {
         }
         return result
     }
+    // DFS traversal from a given source s
+        func DFS(s: Int) -> [Int] {
+            
+            var result = [Int]()
+            
+            // Mark all vertices as not visited
+            var visited = adj.map { _ in false }
+            
+            // Create DFS Stack
+            var stack = Stack<Int>()
+            
+            // Mark first vertex as visited and enqueue
+    //        print("Starting at \(s)")
+            visited[s] = true
+            stack.push(s)
+            
+            while stack.count > 0 {
+                let current = stack.pop()!
+    //            print("Popping \(current)")
+                result.append(current)
+                
+                // Iterate over all neighbours adding to queue and popping deep as we go
+                for n in adj[current] {
+                    if visited[n] == false {
+                        visited[n] = true
+    //                    print("Pushing - \(n)")
+                        stack.push(n)
+                    }
+                }
+            }
+            
+            return result
+        }
 }
 
 
@@ -222,3 +255,5 @@ g.addEdge(v: 5, w: 2)
 g.addEdge(v: 2, w: 7)
 
 print("Breadth First Search: \(g.BFS(s: 6))")
+print("")
+print("Depth Firat Search: \(g.DFS(s: 5))")
