@@ -195,6 +195,12 @@ class Graph {
         }
         return result
     }
+    
+/*
+MARK: Depth First Search
+Ignore current depth, and just tunnel downward along single path until end is reached. Ex: Path finding, cycle detection
+*/
+
     // DFS traversal from a given source s
         func DFS(s: Int) -> [Int] {
             
@@ -230,17 +236,6 @@ class Graph {
         }
 }
 
-
-
-/*
- MARK: Depth First Search
- Ignore current depth, and just tunnel downward along single path until end is reached. Ex: Path finding, cycle detection
- 
- */
-
-
-
-
 //MARK: Create graph from lesson (non-directional)
 
 let g = Graph(8)
@@ -254,6 +249,19 @@ g.addEdge(v: 3, w: 0)
 g.addEdge(v: 5, w: 2)
 g.addEdge(v: 2, w: 7)
 
-print("Breadth First Search: \(g.BFS(s: 6))")
+//MARK: My graph from above
+
+let myG = Graph(9)
+myG.addEdge(v: 1, w: 2)
+myG.addEdge(v: 2, w: 5)
+myG.addEdge(v: 1, w: 3)
+myG.addEdge(v: 3, w: 6)
+myG.addEdge(v: 6, w: 7)
+myG.addEdge(v: 1, w: 4)
+myG.addEdge(v: 4, w: 7)
+myG.addEdge(v: 2, w: 7)
+myG.addEdge(v: 7, w: 5)
+
+print("Breadth First Search: \(myG.BFS(s: 1))")
 print("")
-print("Depth Firat Search: \(g.DFS(s: 5))")
+print("Depth First Search: \(myG.DFS(s: 1))")
